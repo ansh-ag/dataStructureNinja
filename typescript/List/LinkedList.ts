@@ -1,14 +1,14 @@
 
-class LinkedListNode {
+class LinkedListNode<T> {
     constructor(
         
         public value, 
         // next node
-        public next: LinkedListNode = null ){ };
+        public next: LinkedListNode<T> = null ){ };
 }
 export class LinkedList<T>{
-    head:LinkedListNode = null;
-    tail:any = null;
+    head:LinkedListNode<T> = null;
+    tail:LinkedListNode<T> = null;
     count = 0;
 
     public prepend(value:T){
@@ -55,13 +55,13 @@ export class LinkedList<T>{
 
     }
 
-    public remove(value : T): LinkedList<T>{
+    public remove(value : T): LinkedListNode<T>{
 
         if(this.head.value == value){
 
             this.head = this.head.next;
             this.count--;
-            return this;
+            return this.head;
         }
 
         let currentNode = this.head;
@@ -74,12 +74,25 @@ export class LinkedList<T>{
                 lastNode.next = currentNode.next;
                 currentNode.next = null;
                 currentNode.value = null;
-                return this;
+                return currentNode;
             }
             
         }
         return null;
 
 
+    }
+
+
+    public find(value : T) : LinkedListNode<T>{
+        let currentNode = this.head;
+        do{  
+            if(currentNode.value != value){
+                currentNode = currentNode.next;
+            } else {
+                return currentNode;
+            }
+        } while((currentNode.next));
+        return;
     }
 }
