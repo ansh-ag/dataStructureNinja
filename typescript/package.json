@@ -1,0 +1,24 @@
+{
+  "name": "data-structures-in-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ansh-ag/Data-Structures-in-TypeScript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ansh-ag/Data-Structures-in-TypeScript/issues"
+  },
+  "homepage": "https://github.com/ansh-ag/Data-Structures-in-TypeScript#readme",
+  "devDependencies": {
+    "@types/node": "^16.4.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  }
+}

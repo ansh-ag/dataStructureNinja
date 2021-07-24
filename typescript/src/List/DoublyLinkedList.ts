@@ -2,7 +2,7 @@
 export class DoublyLinkedListNode<T>{
     public next: DoublyLinkedListNode<T> = null
     public prev: DoublyLinkedListNode<T> = null
-    constructor(public value){ };
+    constructor(public value:any){ };
 }
 
 export class DoublyLinkedList<T>{

@@ -2,7 +2,7 @@
 class LinkedListNode<T> {
     constructor(
         
-        public value, 
+        public value: T, 
         // next node
         public next: LinkedListNode<T> = null ){ };
 }
@@ -84,15 +84,39 @@ export class LinkedList<T>{
     }
 
 
-    public find(value : T) : LinkedListNode<T>{
+    public find(value : T|string, callbackFunction?: (value: any) => boolean) : LinkedListNode<T>{
+        if(!this.head){
+            return undefined;
+        }
+        
         let currentNode = this.head;
+
         do{  
-            if(currentNode.value != value){
+            if(callbackFunction){
+                const node = this.findWithCallback(currentNode, callbackFunction);
+                if(node){
+                    return node;
+                }
+            } else {
+
+                if(currentNode.value != value){
+                    currentNode = currentNode.next;
+                } else {
+                    return currentNode;
+                }
+            }
+        } while((currentNode.next));
+        return;
+    }
+    
+    private findWithCallback(currentNode : LinkedListNode<T>, callbackFunction:(value: any) => boolean) : LinkedListNode<T>{
+       
+            if(!callbackFunction(currentNode.value)){
                 currentNode = currentNode.next;
             } else {
                 return currentNode;
             }
-        } while((currentNode.next));
-        return;
+            return null
+        
     }
 }
