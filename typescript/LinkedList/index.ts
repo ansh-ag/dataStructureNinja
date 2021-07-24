@@ -9,8 +9,11 @@ class LinkedListNode {
 export class LinkedList<T>{
     head:LinkedListNode = null;
     tail:any = null;
+    count = 0;
 
     public prepend(value:T){
+        this.count++
+
         // create a linkedList Object
         const listNode = new LinkedListNode(value);
         // no head, when running for the first time
@@ -30,6 +33,8 @@ export class LinkedList<T>{
 
 
     public append(value:T){
+        this.count++
+
          // create a linkedList Object
          const listNode = new LinkedListNode(value);
          // no head, when running for the first time
@@ -47,6 +52,34 @@ export class LinkedList<T>{
         // keep the tail instance for ref 
         this.tail = listNode;
         return this;
+
+    }
+
+    public remove(value : T): LinkedList<T>{
+
+        if(this.head.value == value){
+
+            this.head = this.head.next;
+            this.count--;
+            return this;
+        }
+
+        let currentNode = this.head;
+        let lastNode = this.head;
+        while(currentNode.next != null){
+            if(currentNode.value != value){
+                currentNode = currentNode.next;
+                lastNode = currentNode;
+            } else {
+                lastNode.next = currentNode.next;
+                currentNode.next = null;
+                currentNode.value = null;
+                return this;
+            }
+            
+        }
+        return null;
+
 
     }
 }
