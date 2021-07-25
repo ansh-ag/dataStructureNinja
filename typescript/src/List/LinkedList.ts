@@ -56,25 +56,48 @@ export class LinkedList<T>{
     }
 
     public remove(value : T): LinkedListNode<T>{
-
+        // console.log(this.tail)
         if(this.head.value == value){
+            const toRemoveNode = JSON.parse(JSON.stringify(this.head))
 
-            this.head = this.head.next;
+            if(!this.head.next){
+                this.head = null;
+                this.tail = null
+            } else {
+                this.head = this.head.next
+            }
             this.count--;
-            return this.head;
+            return toRemoveNode;
         }
+
+      
 
         let currentNode = this.head;
         let lastNode = this.head;
-        while(currentNode.next != null){
+        while(currentNode.value){
+            // console.log(currentNode)
             if(currentNode.value != value){
-                currentNode = currentNode.next;
                 lastNode = currentNode;
+                currentNode = currentNode.next;
+                // console.log("lastNode",lastNode)
+                // console.log({currentNode}, {lastNode})
             } else {
-                lastNode.next = currentNode.next;
+
+                // console.log('rere')
+                if(this.tail == currentNode){
+                    this.tail = lastNode;
+                    // console.log('yes', this.tail)
+                } else {
+                    
+                    lastNode.next = currentNode.next;
+                    
+                }
+                // console.log(this.tail)
+                const toRemoveNode = JSON.parse(JSON.stringify(currentNode))
                 currentNode.next = null;
                 currentNode.value = null;
-                return currentNode;
+                // console.log(this.tail)
+                return toRemoveNode;
             }
             
         }

@@ -48,6 +48,17 @@ export class HashTable<T> {
         return undefined;
     }
 
+    public delete(key:string){
+        const idx = this.hash(key);
+        const linkedListBucket = this.bucket[idx];
+        const node = linkedListBucket.find(key, (currentValue)=> currentValue.key == key )
+        // console.log(linkedListBucket);
+
+        linkedListBucket.remove(node.value)
+        console.log(linkedListBucket);
+        // node.
+    }
+
 }
 
 

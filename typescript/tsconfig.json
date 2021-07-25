@@ -3,8 +3,10 @@
       "module": "commonjs",
       "noImplicitAny": true,
       "removeComments": true,
+      "target": "ES6",
       "preserveConstEnums": true,
-      "lib": ["ES2015"],
+      "lib": ["ES2017", "ESNext", "ES7"],
+      "allowJs": true,
       "strict": false    
     }
 }
