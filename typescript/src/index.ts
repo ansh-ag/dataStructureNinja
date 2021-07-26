@@ -45,13 +45,22 @@ import { HashTable } from './HashTable/HashTable';
  */
 import { BinarySearchTree } from './Tree/BinarySearchTree/BinarySearchTree';
 
-const bstree = new BinarySearchTree<string>();
+// const bstree = new BinarySearchTree<string>();
 
-bstree.add("A") 
-bstree.add("CA") 
-bstree.add("AAC") 
-bstree.add("BA") 
+// bstree.add("A") 
+// bstree.add("CA") 
+// bstree.add("AAC") 
+// bstree.add("BA") 
 // console.log(bstree)
 
 
-console.log(bstree.inOrderPrint())
+// console.log(bstree.inOrderPrint())
+
+/**
+ * 
+ * AVL Trees working example
+ * 
+ */
+
+import { AVLTree } from './Tree/AVLTree/AVLTree';
+

@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon --ext ts --exec 'jasmine-ts \"src/**/*.spec.ts\"'",
+    "devstart": "nodemon ./bin/www"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ansh-ag/Data-Structures-in-TypeScript.git"
@@ -17,7 +19,12 @@
   },
   "homepage": "https://github.com/ansh-ag/Data-Structures-in-TypeScript#readme",
   "devDependencies": {
+    "@types/jasmine": "^3.8.1",
     "@types/node": "^16.4.2",
+    "jasmine": "^3.8.0",
+    "jasmine-ts": "^0.4.0",
+    "jasmine-ts-console-reporter": "^3.1.1",
+    "nodemon": "^2.0.12",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
   }

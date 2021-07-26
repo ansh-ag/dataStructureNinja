@@ -55,7 +55,7 @@ export class HashTable<T> {
         // console.log(linkedListBucket);
 
         linkedListBucket.remove(node.value)
-        console.log(linkedListBucket);
+        // console.log(linkedListBucket);
         // node.
     }
 

@@ -1,43 +1,20 @@
 import { Stack } from "../../Stack/Stack";
+import { TreeNode } from "../TreeNode";
 
-export class BinarySearchTreeNode<T>{
-    public right: BinarySearchTreeNode<T> = null;
-    public left: BinarySearchTreeNode<T> = null;
 
-    constructor(public value: T){}
-    compare(value: T): BinarySearchTreeNode<T>{
-        if(value > this.value){
-            if(this.right){
-                return this.right.compare(value)
-            } else {
-                 this.right = new BinarySearchTreeNode(value)
-                 return this.right;
-            }
-        } else if(value < this.value) {
-            if(this.left){
-                return this.left.compare(value)
-            } else {
-                 this.left = new BinarySearchTreeNode(value)
-                 return this.left
-            }
-        } else {
-            return this;
-        }
-    }
-
-}
 
 export class BinarySearchTree<T>{
     
-    private parentNode = new BinarySearchTreeNode<T>(null);
+    public parentNode = new TreeNode<T>(null, null);
     
     add(value: T){
         if(!this.parentNode.value){
             this.parentNode.value = value;
+            // this.parentNode.parent = this.parentNode
             return this;
         }
 
-        const node = this.parentNode.compare(value)
+        const node = this.parentNode.compare(value,  this.parentNode)
         return node;
     }
 
@@ -45,7 +22,7 @@ export class BinarySearchTree<T>{
         // let currentNode
     }
 
-    inOrderPrint(node?:BinarySearchTreeNode<T>){
+    inOrderPrint(node?:TreeNode<T>){
         if(!node){
             node = this.parentNode;
         }
@@ -64,7 +41,7 @@ export class BinarySearchTree<T>{
     
     inOrderIterate(){
         // same with iteration
-        let stack = new Stack<BinarySearchTreeNode<T>>()
+        let stack = new Stack<TreeNode<T>>()
         let currNode = this.parentNode
         while(currNode || stack.count > 0){
             
