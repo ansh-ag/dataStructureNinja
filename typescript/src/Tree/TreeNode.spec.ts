@@ -80,6 +80,20 @@ describe("Tree Node test cases:", ()=>{
         expect(node.balanceFactor).toEqual(4)
     })
 
-    
+
+    it('should remove child node by value',()=>{
+        const node = new TreeNode<number>(10);
+        node.right = new TreeNode<number>(15)
+        node.left = new TreeNode<number>(5)
+
+        node.removeChild(node.left);
+
+        expect(node.left).toBeNull();
+
+        node.removeChild(node.right);
+
+        expect(node.right).toBeNull();
+
+    })
 
 })

@@ -36,4 +36,24 @@ describe("Binary Search Tree Node test cases :", ()=>{
 
         expect(node.find(6)).toBeNull();
     })
+
+
+    it("should remove the node by value",()=>{
+        const node = new BSTNode<number>(10);
+        node.insert(5);
+        node.insert(15);
+
+        node.remove(5);
+        expect(node.left).toBeUndefined();
+        
+        node.remove(10);
+        expect(node).toBeUndefined();
+
+        node.insert(5);
+        node.insert(3);
+        node.insert(2);
+
+        node.remove(3);
+        expect(node.left.left.value).toEqual(2)
+    })
 });

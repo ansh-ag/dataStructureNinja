@@ -49,4 +49,48 @@ export class BSTNode<T> extends TreeNode<T>{
     contains(value : T): boolean {
         return !!this.find(value);
     }
+
+
+    remove(value : T){
+        const nodeToRemove = this.find(value);
+        if(!nodeToRemove){
+            return false;
+        }
+
+        const {parent} = nodeToRemove;
+        if(!nodeToRemove.left && !nodeToRemove.right){
+            if(parent){
+                parent.removeChild(nodeToRemove);
+            } else {
+                nodeToRemove.value = undefined;
+            }
+
+        } else if(nodeToRemove.left && nodeToRemove.right){
+            const nextBiggestNode =  (<BSTNode<T>> nodeToRemove.right).findMin();
+            if (nextBiggestNode == nodeToRemove.right) {
+                this.remove(nextBiggestNode.value);
+            } else {
+                nodeToRemove.value = nodeToRemove.right.value
+                nodeToRemove.right = nodeToRemove.right.right
+            }
+
+        } else {
+            const childNode = nodeToRemove.right || nodeToRemove.left;
+            if(parent){
+                parent.replaceNode(nodeToRemove, childNode);
+            } else {
+                TreeNode.copyNode(childNode, nodeToRemove);
+            }
+            nodeToRemove.parent=null;
+            return this;
+        }
+
+    }
+
+    findMin(){
+        if(!this.left){
+            return this;
+        }
+        (<BSTNode<T>>this.left).findMin()
+    }
 }

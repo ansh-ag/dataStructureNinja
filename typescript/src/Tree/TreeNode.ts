@@ -70,7 +70,39 @@ export class TreeNode<T>{
     }
 
 
+    removeChild(node: TreeNode<T>) :boolean{
+        if(this.left && this.left == node){
+            this.left = null;
+        } else if(this.right && this.right == node){
+            this.right = null;
+        } else {
+            return false;
+        }
+        return true
+    }
 
+    replaceNode(fromNode: TreeNode<T>, toNode: TreeNode<T>){
+        if(!fromNode || !toNode){
+            return false
+        }
+
+        if(this.left && this.left == fromNode){
+            this.left = toNode;
+            return true
+        }
+        if(this.right && this.right == fromNode){
+            this.right = toNode;
+            return true
+        }
+        return false;
+    }
+
+    static copyNode(sourceNode: TreeNode<any>, targetNode: TreeNode<any>){
+        targetNode.value = sourceNode.value;
+        targetNode.left = sourceNode.left;
+        targetNode.right = sourceNode.right;
+        
+    }
 
 }
 
