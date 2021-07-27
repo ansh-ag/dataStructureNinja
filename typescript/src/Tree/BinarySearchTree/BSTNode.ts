@@ -1,6 +1,6 @@
 import { TreeNode } from "../TreeNode";
 
-export class BSTNode<T> extends TreeNode<T>{
+export class BSTNode<T> extends TreeNode<BSTNode<T>, T>{
     constructor(value: T = null, ){
         super(value)
     }
@@ -13,14 +13,14 @@ export class BSTNode<T> extends TreeNode<T>{
     insert(value: T): BSTNode<T>{
         if(this.value < value){
             if(this.right){
-                return (<BSTNode<T>> this.right).insert(value);
+                return  this.right.insert(value);
             }
             const node = new BSTNode<T>(value);
             this.right = node;
             
         } else if(this.value > value){
             if(this.left){
-                return (<BSTNode<T>> this.left).insert(value);
+                return this.left.insert(value);
             }
             const node = new BSTNode<T>(value);
             this.left = node;
@@ -37,9 +37,9 @@ export class BSTNode<T> extends TreeNode<T>{
      */
     find(value : T): BSTNode<T>{
         if(value < this.value){
-            return  (<BSTNode<T>> this.left).find(value)
+            return   this.left.find(value)
         } else if(value > this.value){
-            return  (<BSTNode<T>> this.right).find(value)
+            return   this.right.find(value)
         } else if(value == this.value){
             return this;
         }
@@ -66,7 +66,7 @@ export class BSTNode<T> extends TreeNode<T>{
             }
 
         } else if(nodeToRemove.left && nodeToRemove.right){
-            const nextBiggestNode =  (<BSTNode<T>> nodeToRemove.right).findMin();
+            const nextBiggestNode =  nodeToRemove.right.findMin();
             if (nextBiggestNode == nodeToRemove.right) {
                 this.remove(nextBiggestNode.value);
             } else {
@@ -91,6 +91,6 @@ export class BSTNode<T> extends TreeNode<T>{
         if(!this.left){
             return this;
         }
-        (<BSTNode<T>>this.left).findMin()
+        this.left.findMin()
     }
 }
