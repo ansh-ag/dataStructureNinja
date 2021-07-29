@@ -1,20 +1,21 @@
 import { Stack } from "../../Stack/Stack";
-import { TreeNode } from "../TreeNode";
+import { BSTNode } from "./BSTNode";
+// import { TreeNode } from "../TreeNode";
 
 
 
 export class BinarySearchTree<T>{
     
-    public parentNode = new TreeNode<T>(null, null);
+    public parentNode = new BSTNode<T>();
     
-    add(value: T){
+    insert(value: T){
         if(!this.parentNode.value){
             this.parentNode.value = value;
             // this.parentNode.parent = this.parentNode
             return this;
         }
 
-        const node = this.parentNode.compare(value,  this.parentNode)
+        const node = this.parentNode.insert(value)
         return node;
     }
 
@@ -22,32 +23,32 @@ export class BinarySearchTree<T>{
         // let currentNode
     }
 
-    inOrderPrint(node?:TreeNode<T>){
+    inOrderPrint(node?:BSTNode<T>){
         if(!node){
             node = this.parentNode;
         }
     // const closureFun = (node:BinarySearchTreeNode<T>)=>{
         if(node.left){
-            this.inOrderPrint(node.left);
+            this.inOrderPrint(<any>node.left);
         }
         
         console.log(node.value)
 
         if(node.right){
-            this.inOrderPrint(node.right)
+            this.inOrderPrint(<any>node.right)
         }
     }
 
     
     inOrderIterate(){
         // same with iteration
-        let stack = new Stack<TreeNode<T>>()
+        let stack = new Stack<BSTNode<T>>()
         let currNode = this.parentNode
         while(currNode || stack.count > 0){
             
             while(currNode){
                 stack.push(currNode);
-                currNode = currNode.left
+                currNode = <any>currNode.left
                 // continue;
                 // stack.push(c)
             }
@@ -57,7 +58,7 @@ export class BinarySearchTree<T>{
             
             console.log(currNode.value);
             
-            currNode = currNode.right;
+            currNode = <any>currNode.right;
         }
     }
 }
