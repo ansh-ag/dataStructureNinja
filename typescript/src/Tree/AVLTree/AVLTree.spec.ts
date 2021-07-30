@@ -37,7 +37,7 @@ describe("AVL Tree cases :",()=>{
 
         /**
          * let's say there are four nodes 
-         * C <- B <- A <-X, this should now be C <- B -> A, where B <- X
+         * C <- B <- A <-X, this should now be C <- B <- A -> X
          */
 
         // 1 <- 3 <- 5 <- 8
