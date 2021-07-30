@@ -1,6 +1,6 @@
 
-export class TreeNode <N extends TreeNode<any,any> ,T>  {
-    private _left: N;
+export class TreeNode <T, N extends TreeNode<T, N>>  {
+    public _left: N;
     private _right: N;
     private _parent: N;
     constructor(private _value: T = null){}
@@ -14,15 +14,15 @@ export class TreeNode <N extends TreeNode<any,any> ,T>  {
     }
 
 
-    set left(node){
+    set left(node:N){
         // current left node, if there is one, needs to be detached.
         // current node is not the parent anymore
         if(this._left){
-            this._left._parent = null;
+            this._left.parent = null;
         }
         this._left = node
         if(this._left){
-            this._left.parent = this;
+           (<TreeNode<T,N>> this._left.parent ) = this;
         }
     }
     get left(){
@@ -38,7 +38,7 @@ export class TreeNode <N extends TreeNode<any,any> ,T>  {
         }
         this._right = node
         if(this._right){
-            this._right.parent = this;
+            (<TreeNode<T,N>> this._right.parent ) = this;
         }
     }
     get right(){
@@ -177,3 +177,4 @@ export class TreeNode <N extends TreeNode<any,any> ,T>  {
 //       }
 
 // }
+

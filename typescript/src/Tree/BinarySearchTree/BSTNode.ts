@@ -1,6 +1,6 @@
 import { TreeNode } from "../TreeNode";
 
-export class BSTNode<T> extends TreeNode<BSTNode<T>, T>{
+export class BSTNode<T> extends TreeNode<T, BSTNode<T>>{
     constructor(value: T = null, ){
         super(value)
     }
