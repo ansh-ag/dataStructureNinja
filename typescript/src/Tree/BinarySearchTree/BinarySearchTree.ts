@@ -11,7 +11,6 @@ export class BinarySearchTree<T>{
     insert(value: T){
         if(!this.parentNode.value){
             this.parentNode.value = value;
-            // this.parentNode.parent = this.parentNode
             return this;
         }
 
@@ -21,27 +20,27 @@ export class BinarySearchTree<T>{
 
     remove(value: T){
         // let currentNode
+        return this.parentNode.remove(value);
     }
 
     inOrderPrint(node?:BSTNode<T>){
         if(!node){
             node = this.parentNode;
         }
-    // const closureFun = (node:BinarySearchTreeNode<T>)=>{
         if(node.left){
-            this.inOrderPrint(<any>node.left);
+            this.inOrderPrint(node.left);
         }
         
         console.log(node.value)
 
         if(node.right){
-            this.inOrderPrint(<any>node.right)
+            this.inOrderPrint(node.right)
         }
     }
 
     
-    inOrderIterate(){
-        // same with iteration
+    // same with iteration
+    inOrderPrintWithIterate(){
         let stack = new Stack<BSTNode<T>>()
         let currNode = this.parentNode
         while(currNode || stack.count > 0){
@@ -49,11 +48,7 @@ export class BinarySearchTree<T>{
             while(currNode){
                 stack.push(currNode);
                 currNode = <any>currNode.left
-                // continue;
-                // stack.push(c)
             }
-            // console.log(stack, stack.count)
-            // console.log('dddd', currNode)
             currNode = stack.pop();
             
             console.log(currNode.value);

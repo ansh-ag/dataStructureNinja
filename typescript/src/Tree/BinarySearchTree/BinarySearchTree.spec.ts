@@ -8,5 +8,5 @@ describe("Binary Search Tree test cases :", ()=>{
         node.insert(5);
         node.insert(15);
         expect(node.parentNode.value).toEqual(10);
-    })
+    }) 
 })
