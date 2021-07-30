@@ -31,10 +31,11 @@ describe("Binary Search Tree Node test cases :", ()=>{
         
         expect(node.find(10).value).toEqual(10)
 
-        // const myNode = node.insert(5)
-        // expect(myNode.find(5)).toEqual(myNode);
+        const myNode = node.insert(5)
+        console.log(myNode, node.find(5))
+        expect(node.find(5)).toEqual(myNode);
 
-        // expect(node.find(6)).toBeNull();
+        expect(node.find(6)).toBeNull();
     })
 
 

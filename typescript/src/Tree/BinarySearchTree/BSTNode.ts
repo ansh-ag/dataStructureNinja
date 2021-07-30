@@ -14,21 +14,24 @@ export class BSTNode<T> extends TreeNode<BSTNode<T>, T>{
         if(this.value < value){
             if(this.right){
                 return  this.right.insert(value);
+            } else {
+                const node = new BSTNode<T>(value);
+                this.right = node;
+                return this.right
             }
-            const node = new BSTNode<T>(value);
-            this.right = node;
             
         } else if(this.value > value){
             if(this.left){
                 return this.left.insert(value);
+            }else{
+                const node = new BSTNode<T>(value);
+                this.left = node;
+                return this.left
             }
-            const node = new BSTNode<T>(value);
-            this.left = node;
         } else {
                 this.value = value
+                return this;
         }
-        
-        return this;
 
     }
 
@@ -36,9 +39,9 @@ export class BSTNode<T> extends TreeNode<BSTNode<T>, T>{
      * node
      */
     find(value : T): BSTNode<T>{
-        if(value < this.value){
-            return   this.left.find(value)
-        } else if(value > this.value){
+        if(this.left && value < this.value){
+            return this.left.find(value)
+        } else if(this.right && value > this.value){
             return   this.right.find(value)
         } else if(value == this.value){
             return this;

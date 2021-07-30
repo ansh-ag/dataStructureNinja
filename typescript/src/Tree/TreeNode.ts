@@ -1,7 +1,8 @@
-export class TreeNode<N,T>{
+
+export class TreeNode <N extends TreeNode<any,any> ,T>  {
     private _left: N;
     private _right: N;
-    private _parent:   N;
+    private _parent: N;
     constructor(private _value: T = null){}
 
     
@@ -13,11 +14,11 @@ export class TreeNode<N,T>{
     }
 
 
-    set left(node:  N){
+    set left(node){
         // current left node, if there is one, needs to be detached.
         // current node is not the parent anymore
         if(this._left){
-            this._left.parent = null;
+            this._left._parent = null;
         }
         this._left = node
         if(this._left){
@@ -29,7 +30,7 @@ export class TreeNode<N,T>{
     }
     
     
-    set right(node:  N{
+    set right(node:  N){
         // current right node, if there is one, needs to be detached.
         // current node is not the parent anymore
         if(this._right){
@@ -97,7 +98,7 @@ export class TreeNode<N,T>{
         return false;
     }
 
-    static copyNode(sourceNode:  N, targetNode:  N){
+    static copyNode(sourceNode: any, targetNode:  any){
         targetNode.value = sourceNode.value;
         targetNode.left = sourceNode.left;
         targetNode.right = sourceNode.right;
